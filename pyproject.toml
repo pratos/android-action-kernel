@@ -1,0 +1,30 @@
+[project]
+name = "android-action-kernel"
+version = "0.1.0"
+description = "AI agents for Android devices"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = "==3.12.*"
+dependencies = [
+    "openai==1.12.0",
+    "python-dotenv==1.0.0",
+    "boto3==1.34.0",
+]
+
+[project.scripts]
+android-action-kernel = "kernel:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = [
+    "actions",
+    "config",
+    "constants",
+    "kernel",
+    "llm_providers",
+    "sanitizer",
+]
+package-dir = {"" = "src"}
