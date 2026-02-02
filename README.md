@@ -156,20 +156,29 @@ Browser agents can't reach these. Desktop agents don't fit. **Android Use is the
 ## Quick Start (60 Seconds)
 
 ### Prerequisites
-- Python 3.10+
+- Python 3.12
+- [uv](https://docs.astral.sh/uv/)
 - Android device or emulator (USB debugging enabled)
 - ADB (Android Debug Bridge)
 - OpenAI API key
 
 ### Installation
 
+**Recommended (script):**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/actionstatelabs/android-action-kernel/main/install.sh | bash
+```
+
+**Manual:**
+
 ```bash
 # 1. Clone the repo
 git clone https://github.com/actionstatelabs/android-action-kernel.git
 cd android-action-kernel
 
-# 2. Install dependencies
-pip install -r requirements.txt
+# 2. Install dependencies (uv)
+uv sync
 
 # 3. Setup ADB
 brew install android-platform-tools  # macOS
@@ -178,11 +187,13 @@ brew install android-platform-tools  # macOS
 # 4. Connect device & verify
 adb devices
 
-# 5. Set API key
+# 5. Set API key (and providers if needed)
 export OPENAI_API_KEY="sk-..."
+export LLM_PROVIDERS="openai,groq,bedrock"  # optional, defaults to openai
 
 # 6. Run your first agent
-python kernel.py
+uv run android-action-kernel
+# or: uv run python src/kernel.py
 ```
 
 ### Try It: Logistics Example
